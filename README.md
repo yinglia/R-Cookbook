@@ -1,2 +1,2 @@
-# R-Codebook
-R codebook for common packages, functions, etc.
+# R-Cookbook
+R cookbook for common packages, functions, etc.
