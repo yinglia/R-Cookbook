@@ -1,0 +1,101 @@
+---
+title: "R  tutorial 1: How to create beautiful plots using ggplot2"
+output: html_document
+date: '2022-04-16'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE,
+                      warning = FALSE, cache = TRUE)
+```
+
+Codebook for example dataset:
+
+Indomethacin RCT to prevent PEP Dataset [https://htmlpreview.github.io/?https://github.com/higgi13425/medicaldata/blob/master/man/codebooks/indo_rct_codebook.html]
+
+Blood Storage [https://www.causeweb.org/tshs/datasets/Blood%20Storage%20Data%20Dictionary.pdf]
+
+COVID-19 Testing Dataset [https://htmlpreview.github.io/?https://github.com/higgi13425/medicaldata/blob/master/man/codebooks/covid_testing_codebook.html]
+
+Case-control Cancer Dataset [https://htmlpreview.github.io/?https://github.com/higgi13425/medicaldata/blob/master/man/codebooks/esoph_ca_codebook.html]
+
+Obstetrics and Periodontal Therapy
+Data Dictionary [https://www.causeweb.org/tshs/datasets/OPT_Data_Dictionary.pdf]
+
+cath(dev) [https://htmlpreview.github.io/?https://github.com/higgi13425/medicaldata/blob/master/man/codebooks/cath_codebook.html] 3504 patients
+
+```{r}
+# load data we will use
+#install.packages("medicaldata")
+library(medicaldata)
+#data(package = "medicaldata")
+names(blood_storage)
+names(indo_rct)
+names(covid_testing)
+names(esoph_ca)
+names(opt)
+
+library(dplyr)
+library(magrittr)
+data1 <- blood_storage %>% 
+  janitor::clean_names()
+
+# load package
+library(ggplot2)
+```
+
+## Costumize legend title, label and color
+
+```{r}
+
+scale_fill_manual('Test Result', ## define legend title 
+                    values = c('Invalid' = '#1f77b4', ## define legend color
+                               'Negative' = '#e377c2', 
+                               'Positive' = '#2ca02c')) + 
+
+```
+
+# One group
+
+## Histogram Plot
+
+StatBin requires a continuous x variable
+
+```{r}
+# most effective way is to modify the legend label in datafra
+data1 %>% 
+  mutate(t_stage = ) %>% 
+  ggplot(aes(x = age,
+         fill = factor(t_stage))) +
+  geom_histogram(binwidth = 2, 
+                 color = 'gray') +
+  labs(x = 'Age',
+       y = 'Frequency',
+       title = 'Histogram of Age',
+       fill = 'Clinical T 	Stage') + # most reliable way to define the legend title
+  theme_bw()  
+ 
+
+  
+  
+  # xlab('Age') +
+  # ylab('Frequency') +
+  # ggtitle('Histogram of Age')
+```
+
+## Density Plot
+
+## Scatter Plot
+
+# Two groups
+
+
+# Three groups
+
+
+
+# Multiple groups
+
+
+
+
