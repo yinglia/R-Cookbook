@@ -85,9 +85,15 @@ data1 %>%
 
 ## Density Plot
 
+
+
 ## Scatter Plot
 
+ggplot() +
+geom_point()
+
 # Two groups
+
 
 
 # Three groups
