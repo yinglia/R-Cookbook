@@ -1,0 +1,105 @@
+---
+title: "MDD Calculatio"
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+date: '2022-04-21'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+a <- 0.05
+b <- 0.2
+p2 <- 0.52
+q2 <- 1-p2
+k <- 3
+#mean_p <- (p1+p2)/2
+#mean_q <- (1-p1+q2)/2
+z.975 <- 1.96
+z.8 <- 0.84
+n1 <- 200
+n2 <- 600
+```
+
+# hand-try right value of P1
+```{r}
+
+calculator <- function(n1,n2,p1,p2){
+  q1 <- 1-p1
+  q2 <- 1-p2
+  k <- n2/n1
+  u.p <- (p1+k*p2)/(1+k)
+  u.q <- 1-u.p
+  x = (sqrt(u.p*u.q*(1+1/k))*1.96 + sqrt(p1*q1+p2*q2/k)*0.84)^2/(p2-p1)^2
+  return(x)
+}
+
+calculator(200, 600, 0.4, 0.52)
+  
+calculator(200, 600, 0.42, 0.52)
+
+for (i in seq(0.4,0.42, 50)){
+  if (calculator(200,600,i,0.52)){
+    print(i)
+  }
+}
+
+for (i in seq(0.4,0.42, 0.00000001)){
+  if(calculator(200,600,i,0.52)>199.9999 & calculator(200,600,i,0.52)<=200 ){
+    print(i)
+  }
+}
+
+#0.4061646 0.4061648
+calculator(200,600,0.4036578,0.52)
+calculator(200,600,0.4061492,0.52)
+calculator(200,600,0.4061648,0.52)
+calculator(200,600,0.4061649,0.52)
+
+#P1<=0.4061648
+
+0.52-0.4061648
+```
+
+# use uniroot function
+```{r}
+fun <- function(p1){
+  q1 <- 1-p1
+  q2 <- 1-0.52
+  k <- 600/200
+  u.p <- (p1+k*0.52)/(1+k)
+  u.q <- 1-u.p
+  (sqrt(u.p*u.q*(1+1/k))*1.96 + sqrt(p1*q1+(0.52)*q2/k)*0.84)^2/(0.52-p1)^2 - 200
+}
+
+uniroot(fun, lower=0.4, upper = 0.41)
+```
+
+# propTestMdd
+```{r}
+library(EnvStats)
+
+propTestMdd(n.or.n1 = 200,
+            n2 = 600,
+            p0.or.p2 = 0.52, 
+            sample.type="two",
+            alpha = 0.05, 
+            power = 0.8, 
+            alternative = 'two.sided')
+
+propTestMdd(n.or.n1 = 200, n2 = 600, 
+            p0.or.p2 = 0.52, power = 0.80, 
+            sample.type = "two", alternative = "greater") 
+
+propTestMdd(n.or.n1 = 200, n2 = 600, 
+            p0.or.p2 = 0.52, power = 0.80, 
+            sample.type = "two", alternative = "less") 
+```
+
+
+
+
