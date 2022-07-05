@@ -12,3 +12,6 @@
    setwd('..')
    install('Name of your package')
    ```
+5. check whether you have installed the package successfully.
+
+6. Add documentation
