@@ -34,3 +34,5 @@ function_name
 
 3. when you have internal error, restart R session may solve it
 4. when you `@import ggplot2` but the function suggests that 'did not find ggplot`, this is maybe because you did not create `NAMESPACE` file rightly.  
+5. If you want to rename your R package, you should change the name in ‘DESCRIPTION’ file. (if you only change the name of r project and the folder name, your package name will not be changed.)
+
