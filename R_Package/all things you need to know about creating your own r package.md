@@ -75,7 +75,7 @@ three elements:
 
 What do functions have in common that doesn’t need to be repeated in every title? What is unique to that function and should be highlighted?
 
-positive example:
+#### positive example:
 
 mutate(): Create, modify, and delete columns.
 
@@ -96,7 +96,7 @@ features:
 
 - use synonyms, don't repeat the function name (for this may give user more chance to understand what is the function) 
 
-negative case study:
+#### negative case study:
 
 str_detect(): Detect the presence or absence of a _pattern_ in _a string_.
 str_extract(): Extract matching _patterns_ from _a string_.
@@ -139,4 +139,12 @@ example:
 dplyr::mutate
 
 Notes: these headings come immediately after the description they are shown much later (after the function arguments and return value) in the rendered documentation.
+
+### Arguments (important)
+
+Goal: documenting how each argument affects the output of the function.
+
+Format: @param argument_name a_description_of_its_action
+
+Notes: 1. specify `default value` and keep consitent & update 2. 
 
