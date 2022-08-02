@@ -146,5 +146,28 @@ Goal: documenting how each argument affects the output of the function.
 
 Format: @param argument_name a_description_of_its_action
 
-Notes: 1. specify `default value` and keep consitent & update 2. 
+Notes: 1. specify `default value` and keep consitent & update 
+
+2. if an argument has a fixed set of possible parameters, we should list them. 
+example:
+
+`str_trim()`
+
+```
+#' @param side Side on which to remove whitespace: `"left"`, `"right"`, or
+#'   `"both"` (the default).
+```
+
+2. 
+
+`str_wrap()`
+
+```
+#' @param whitespace_only A boolean.
+#'   * `TRUE` (the default): wrapping will only occur at whitespace.
+#'   * `FALSE`: can break on any non-word character (e.g. `/`, `-`).
+```
+
+
+
 
