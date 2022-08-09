@@ -168,6 +168,22 @@ example:
 #'   * `FALSE`: can break on any non-word character (e.g. `/`, `-`).
 ```
 
+### Details (commanly used)
 
+the third pharagraph after title and description.
+
+ref:
+
+https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html
+
+This introductory block is broken up as follows:
+
+The first sentence is the title: that’s what you see when you look at help(package = mypackage) and is shown at the top of each help file. It should generally fit on one line, be written in sentence case, and not end in a full stop.
+
+The second paragraph is the description: this comes first in the documentation and should briefly describe what the function does.
+
+The third and subsequent paragraphs go into the details: this is a (often long) section that comes after the argument description and should provide any other important details of how the function operates. The details are optional.
+
+You can also use explicit @title, @description, and @details tags. This is unnecessary unless you want to have a multi-paragraph description, bulleted list, or other more exotic structure.
 
 
